@@ -8,12 +8,13 @@ from TwitterSearch import *
 import requests
 import re
 import matplotlib.pyplot as plt
+from wordcloud import WordCloud, STOPWORDS
 ##
 
 ## fetch tweets using given query 
 tweet_query = "job hunt" # search query
 language = "en" # search tweets in specific language only
-max_count = 200; # maximum number or tweets to fetch
+max_count = 20; # maximum number or tweets to fetch
 
 try:
     tso = TwitterSearchOrder() # create a TwitterSearchOrder object
@@ -61,30 +62,18 @@ try:
 except TwitterSearchException as e: # if error happens
     print(e)
 
-## plot as a pie chart
+## plot as a wordcloud
 # Data to plot
-pos_count = 0
-neg_count = 0
-neut_count = 0
-    
-for opinion in tweet_opinions :
-    if opinion == "pos" :
-        pos_count += 1
-    if opinion == "neg" :
-        neg_count += 1
-    if opinion ==  "neutral" :
-        neut_count += 1
+wordcloud = WordCloud(
+                      font_path='G:/Eclipse projects/Python-Twitter_Visualizer/DroidSansMono.ttf',
+                      stopwords=STOPWORDS,
+                      background_color='black',
+                      width=1800,
+                      height=1400
+                     ).generate(words)
 
-labels = 'Positive', 'Neutral', 'Negative'
-sizes = [pos_count, neut_count, neg_count]
-colors = ['blue', 'yellowgreen', 'lightcoral'] 
-explode = (0.1, 0, 0)  # explode 1st slice
- 
-# Plot
-plt.pie(sizes, explode=explode, labels=labels, colors=colors,
-        autopct='%1.1f%%', shadow=True, startangle=140)
-plt.title('Tweeter Opinions about: ' + tweet_query, bbox = {'facecolor': '0.8', 'pad': 5}) 
-plt.axis('equal')
-plt.savefig('./piechart.png', dpi=300)
+plt.imshow(wordcloud)
+plt.axis('off')
+plt.savefig('./my_twitter_wordcloud_1.png', dpi=300)
 plt.show()
 
