@@ -24,10 +24,10 @@ try:
     
     # create a TwitterSearch object
     ts = TwitterSearch(
-        consumer_key = 'LBLIPNZjFEtMGYykYZGh4A7cl',
-        consumer_secret = '5o8MyXViL1Xxrk9c8Krj9P1vtS6DxVKCp7YtpaCLOUo7Iq5cYG',
-        access_token = '357225157-CDBYSd1OL3VZQfMzTwMOzkQtCRazTaKSVjQGkUC7',
-        access_token_secret = 'wmMcZW70IwpkJSZfOKbRanVE20Mj1GbdC9YgEityYhMta'
+        consumer_key = '???',
+        consumer_secret = '???',
+        access_token = '???',
+        access_token_secret = '???'
      )
     
     ## tweets content cleaning
